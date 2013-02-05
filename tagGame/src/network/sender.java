@@ -15,7 +15,7 @@ public class sender {
 	    int bytesRead;
 	    int current = 0;
 	    // localhost for testing
-	    Socket sock = new Socket("127.0.0.1",13267);
+	    Socket sock = new Socket("10.9.30.73",13267);
 	    System.out.println("Connecting...");
 
 	    // receive file
