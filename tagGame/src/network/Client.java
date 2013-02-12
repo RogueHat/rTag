@@ -2,6 +2,7 @@ package network;
 
 import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 
 public class Client {
 
@@ -11,10 +12,14 @@ public class Client {
         FileOutputStream fileOutputStream = new FileOutputStream("output.rar");
 
         byte [] buffer = new byte[64*1024]; 
-        int bytesRead = 0;
+        //int bytesRead = 0;
 
-        while ( (bytesRead = in.read(buffer)) != -1)
-            fileOutputStream.write(buffer, 0, bytesRead);
+        in.read(buffer);
+        int meh = ByteBuffer.wrap(buffer).getInt();
+        System.out.println(meh);
+        
+//        while ( (bytesRead = in.read(buffer)) != -1)
+//            fileOutputStream.write(buffer, 0, bytesRead);
         sock.close();
         fileOutputStream.close();
     }
