@@ -11,15 +11,18 @@ public class Receiver {
 	 * @throws Throwable 
 	 */
 	public static void main(String[] args) throws Throwable {
-		DatagramSocket datagramSocket = new DatagramSocket(80);
+		DatagramSocket datagramSocket = new DatagramSocket(8080);
 
 		byte[] buffer = new byte[10];
-		DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+		while(true){
+			
+			DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 
-		datagramSocket.receive(packet);
-		buffer = packet.getData();
-		
-		System.out.println(buffer);
+			datagramSocket.receive(packet);
+			buffer = packet.getData();
+			
+			System.out.println(buffer);
+		}
 	}
 
 }
