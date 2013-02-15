@@ -11,9 +11,9 @@ public class Receiver {
 	 * @throws Throwable 
 	 */
 	public static void main(String[] args) throws Throwable {
-		DatagramSocket datagramSocket = new DatagramSocket(8080);
+		DatagramSocket datagramSocket = new DatagramSocket(80);
 
-		byte[] buffer = new byte[10];
+		byte[] buffer = new byte[256];
 		while(true){
 			
 			DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
@@ -21,7 +21,7 @@ public class Receiver {
 			datagramSocket.receive(packet);
 			buffer = packet.getData();
 			
-			System.out.println(buffer);
+			System.out.println(new String(buffer));
 		}
 	}
 
