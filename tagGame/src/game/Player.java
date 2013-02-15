@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Player {
 
-	private int X=0, Y=0, D=0;
+	private int X=0, Y=0, D=0, timeIt=0;
 	private String name="";
 		public Player()
 		{

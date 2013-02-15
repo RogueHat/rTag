@@ -1,11 +1,14 @@
 package game;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JFrame;
 
 public class Main extends JFrame
 {
-
+	ArrayList<Player> players;
+	
 	public static void main(String args[])
 	{
 	Player P = new Player(23,34,"person");
