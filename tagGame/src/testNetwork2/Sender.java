@@ -11,7 +11,7 @@ public class Sender {
 		DatagramSocket datagramSocket = new DatagramSocket();
 		Scanner scan = new Scanner(System.in);
 		byte[] buffer = scan.next().getBytes();
-		InetAddress receiverAddress = InetAddress.getByName("10.9.30.73");
+		InetAddress receiverAddress = InetAddress.getByName("128.250.234.114");
 //		InetAddress receiverAddress = InetAddress.getLocalHost();
 		DatagramPacket packet = new DatagramPacket(buffer, buffer.length,receiverAddress, 80);
 		datagramSocket.send(packet);
