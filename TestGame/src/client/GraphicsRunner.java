@@ -1,4 +1,6 @@
-package graphics;
+package client;
+
+import graphics.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,8 +19,8 @@ public class GraphicsRunner extends JFrame {
 	public GraphicsRunner() {
 		super("Graphics Runner");
 		setSize(WIDTH, HEIGHT);
-		players.put("10.26.6.11", new Player());
-		getContentPane().add(new MovingPlayer(players));
+		//players.put("10.26.6.11", new Player());
+		getContentPane().add(new ClientMvPlayer());
 //		this.addKeyListener(new Event());
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

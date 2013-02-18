@@ -21,7 +21,8 @@ public class Receiver {
 			byte[] buf = new byte[1000];
 			DatagramPacket recv = new DatagramPacket(buf, buf.length);
 			s.receive(recv);
-			System.out.println(new String(recv.getData()));
+			String IP = recv.getAddress().toString().replace('/', ' ').trim();
+			System.out.println(IP+": "+new String(recv.getData()));
 		}
 	}
 

@@ -1,27 +1,23 @@
-package graphics;
+package mester;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Scanner;
+
+import network.Network;
 
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class MovingPlayer extends JPanel implements Runnable{
-	/**
-	 * 
-	 */
-	private Map<String,Player> players = new TreeMap<String,Player>();
+public class NetworkDraw extends JPanel implements Runnable{
 	
-	public MovingPlayer() {
+	private Network net = new Network();
+	private Scanner scan;
+	
+	public NetworkDraw() {
 		setBackground(Color.WHITE);		
 		setVisible(true);
 		new Thread(this).start();
-	}
-	public MovingPlayer(Map<String,Player> list) {
-		this();
-		players=list;
 	}
 
 	public void update(Graphics window) {
@@ -31,8 +27,12 @@ public class MovingPlayer extends JPanel implements Runnable{
 	public void paint(Graphics window) {
 		window.setColor(Color.WHITE);
 		window.fillRect(0, 0, getWidth(), getHeight());
-		for(Player pl:players.values())
-			pl.draw(window);
+		window.setColor(Color.black);
+		scan = new Scanner(net.recieve(false));
+		int x = scan.nextInt();
+		int y = scan.nextInt();
+		System.out.println(x+" "+y);
+		window.fillRect(x,y,x+50,y+50);
 	}
 
 	public void run() {
@@ -45,4 +45,5 @@ public class MovingPlayer extends JPanel implements Runnable{
 		} catch (Exception e) {
 		}
 	}
+
 }

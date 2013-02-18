@@ -1,4 +1,6 @@
-package graphics;
+package client;
+
+import graphics.*;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -9,11 +9,14 @@ import java.util.Scanner;
 public class Sender {
 	public static void main(String[] arg) throws Throwable {
 		DatagramSocket datagramSocket = new DatagramSocket();
-		Scanner scan = new Scanner(System.in);
-		byte[] buffer = scan.next().getBytes();
 		InetAddress receiverAddress = InetAddress.getByName("128.250.234.114");
-//		InetAddress receiverAddress = InetAddress.getLocalHost();
-		DatagramPacket packet = new DatagramPacket(buffer, buffer.length,receiverAddress, 80);
-		datagramSocket.send(packet);
+		Scanner scan = new Scanner(System.in);
+		
+		while(true){
+			byte[] buffer = scan.next().getBytes();
+	//		InetAddress receiverAddress = InetAddress.getLocalHost();
+			DatagramPacket packet = new DatagramPacket(buffer, buffer.length,receiverAddress, 8080);
+			datagramSocket.send(packet);
+		}
 	}
 }
