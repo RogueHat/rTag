@@ -11,7 +11,7 @@ import java.awt.Canvas;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 //import lab01_make_a_shape.ShapePanel;
 
 //import lab01_make_a_shape.GraphicsRunner;
@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 
 public class DrawPlayer extends JPanel{
 
+	
 	
 	public DrawPlayer()
 	{
@@ -36,11 +37,11 @@ public class DrawPlayer extends JPanel{
 		window.setColor(Color.WHITE);
 		window.fillRect(0,0,getWidth(), getHeight());
 		
+		ArrayList<Player> players= Main.getPlayers();
 		
-		
-		for(int i=0; i<Main.getPlayers().size();i++)
+		for(int i=0; i<players.size();i++)
 		{
-			
+			player.get(i);
 		}
 		
 	}
