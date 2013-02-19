@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Player {
 
@@ -77,6 +78,12 @@ public class Player {
 		public String getName()
 		{
 			return name;
+		}
+		
+		public void draw(Graphics window)
+		{
+			window.setColor(Color.RED);
+			window.fillRect(getX(),getY(),10,10);
 		}
 		
 		public String toString()

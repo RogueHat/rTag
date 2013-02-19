@@ -35,8 +35,13 @@ public class DrawPlayer extends JPanel{
 	{
 		window.setColor(Color.WHITE);
 		window.fillRect(0,0,getWidth(), getHeight());
-		window.setColor(Color.RED);
-		window.fillRect(getWidth()/2,getHeight()/2,10,10);
+		
+		
+		
+		for(int i=0; i<Main.getPlayers().size();i++)
+		{
+			
+		}
 		
 	}
 

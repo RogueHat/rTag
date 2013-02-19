@@ -7,12 +7,13 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame
 {
-	ArrayList<Player> players;
+	public static ArrayList<Player> players=new ArrayList<Player>();
 	
 	public static void main(String args[])
 	{
 	Player P = new Player(23,34,"person");
-	System.out.println(P);
+	players.add(P);
+	System.out.println(players.get(0));
 	
 	P=P.toItPlayer(P);
 	System.out.println(P);
@@ -23,12 +24,17 @@ public class Main extends JFrame
 	Main run = new Main();
 	}
 	
+	public static ArrayList<Player> getPlayers()
+	{
+		return players;
+	}
+	
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 
 	public Main()
 	{
-		super("MAKE YOUR OWN SHAPE");
+		super("Tag");
 
 		setSize(WIDTH,HEIGHT);
 
