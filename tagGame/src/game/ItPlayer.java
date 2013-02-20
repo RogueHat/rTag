@@ -1,11 +1,14 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class ItPlayer extends Player {
 
-	private int X=0, Y=0, D=0;
+	private int X=0, Y=0, D=0, spd=10, index=0;
 	private String name="";
+	
+	//Constructors.
 	public ItPlayer()
 	{
 		
@@ -13,30 +16,27 @@ public class ItPlayer extends Player {
 	
 	public ItPlayer(int Xaxis, int Yaxis)
 	{
-		X=Xaxis;
-		Y=Yaxis;
+		setX(Xaxis);
+		setY(Yaxis);
 	}
 	
 	public ItPlayer(int Xaxis, int Yaxis, String n)
 	{
-		X=Xaxis;
-		Y=Yaxis;
+		setX(Xaxis);
+		setY(Yaxis);
 		name=n;
 	}
 	
-	public ItPlayer(int Xaxis, int Yaxis, int Direction, String n)
+	public ItPlayer(int Xaxis, int Yaxis, int Direction, int i, String n)
 	{
+		index=i;
 		D=Direction;
-		X=Xaxis;
-		Y=Yaxis;
+		setX(Xaxis);
+		setY(Yaxis);
 		name=n;
 	}
 	
-	/*public ItPlayer(Player p)
-	{
-		p=new ItPlayer(p.getX(), p.getY(), p.getName());
-	}*/
-	
+	// these methods return variables.
 	public Color getColor()
 	{
 		return Color.RED;
@@ -52,11 +52,6 @@ public class ItPlayer extends Player {
 	 return Y;
 	}
 	
-	public void setD(int d)
-	{
-		D=d;
-	}
-	
 	public int getD()
 	{
 	 return D;
@@ -67,6 +62,38 @@ public class ItPlayer extends Player {
 		return name;
 	}
 	
+	/* these methods set variables
+	 */
+	public void setX(int x)
+	{
+		X=x;
+	}
+	
+	public void setY(int y)
+	{
+		Y=y;
+	}
+	
+	public void setD(int d)
+	{
+		D=d;
+	}
+	
+	public void draw(Graphics window)
+	{
+		window.setColor(this.getColor());
+		window.fillRect(getX(),getY(),10,10);
+	}
+	
+	//moves player
+	public void moveX(int n){
+		X+=n;
+	}
+	public void moveY(int n){
+		Y+=n;
+	}
+	
+	//toString
 	public String toString()
 	{
 		return "Xaxis = "+X+" Yaxis = "+Y+" Name = "+name+" ItPlayer";
