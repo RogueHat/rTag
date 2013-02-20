@@ -101,6 +101,11 @@ public class Player {
 			D=d;
 		}
 		
+		public void setSpeed(int s)
+		{
+			spd=s;
+		}
+		
 		public void draw(Graphics window)
 		{
 			window.setColor(getColor());
