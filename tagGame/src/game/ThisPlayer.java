@@ -22,97 +22,57 @@ public class ThisPlayer implements Runnable {
 			players.get(itPlayerIndex).setSpeed(5);
 			for (int i = 0; i < players.size(); i++) {
 				if (i != itPlayerIndex)
-					for(int x=0;x<10;x+5)
-					{
+				{
+						//corners
+						if(isTaged(0,10,0,10,i))break;
+						if(isTaged(10,0,0,10,i))break;
+						if(isTaged(0,10,10,0,i))break;
+						if(isTaged(10,0,10,0,i))break;
 						
-					}
-//					if (players.get(i).getX() == players.get(itPlayerIndex).getX()-10 && players.get(i).getY() == players.get(itPlayerIndex).getY()-10) {
-//						tag(i, itPlayerIndex);
-//						//itPlayerIndex = i;
-//						break;
-//					} else if (players.get(i).getX() - 10 == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()-10) {
-//						tag(i, itPlayerIndex);
-//						//itPlayerIndex = i;
-//						break;
-//					} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() - 10 && players.get(i).getY()-10 == players.get(itPlayerIndex).getY()) {
-//						tag(i, itPlayerIndex);
-//						//itPlayerIndex = i;
-//						break;
-//					} else if (players.get(i).getX() - 10 == players.get(itPlayerIndex).getX() && players.get(i).getY() - 10 == players.get(itPlayerIndex).getY()) {
-//						tag(i, itPlayerIndex);
-//						//itPlayerIndex = i;
-//						break;
-//					}
-//					else if (players.get(i).getX() == players.get(itPlayerIndex).getX() - 10 && players.get(i).getY() == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX()-10 == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() && players.get(i).getY()-10 == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()-10) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				}
-//				else if (players.get(i).getX() == players.get(itPlayerIndex).getX() - 5 && players.get(i).getY() == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX()-5 == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() && players.get(i).getY()-5 == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()-5) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				}/////
-//				else if (players.get(i).getX() == players.get(itPlayerIndex).getX() - 5 && players.get(i).getY()-5 == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX()-5 == players.get(itPlayerIndex).getX() && players.get(i).getY()-5 == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX()-5 == players.get(itPlayerIndex).getX() && players.get(i).getY()-5 == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX()-5 == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()-5) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				}///
-//				else if (players.get(i).getX() == players.get(itPlayerIndex).getX() - 5 && players.get(i).getY() == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX()-5 == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() && players.get(i).getY()-5 == players.get(itPlayerIndex).getY()) {
-//					tag(i, itPlayerIndex);
-//					//itPlayerIndex = i;
-//					break;
-//				} else if (players.get(i).getX() == players.get(itPlayerIndex).getX() && players.get(i).getY() == players.get(itPlayerIndex).getY()-5) {
-//					tag(i, itPlayerIndex);
-//					
-//					break;
-//				}
+						//sides
+						if(isTaged(0,10,0,0,i))break;
+						if(isTaged(10,0,0,0,i))break;
+						if(isTaged(0,0,10,0,i))break;
+						if(isTaged(0,0,0,10,i))break;
+						
+						//inside corners
+						if(isTaged(0,5,0,5,i))break;
+						if(isTaged(5,0,0,5,i))break;
+						if(isTaged(0,5,5,0,i))break;
+						if(isTaged(5,0,5,0,i))break;
+						
+						//inside
+						if(isTaged(0,0,0,0,i))break;
+						
+						//inside sides
+						if(isTaged(0,5,0,0,i))break;
+						if(isTaged(5,0,0,0,i))break;
+						if(isTaged(0,0,5,0,i))break;
+						if(isTaged(0,0,0,5,i))break;
+						
+						//middle sides
+						if(isTaged(5,10,0,10,i))break;
+						if(isTaged(10,5,0,10,i))break;
+						if(isTaged(5,10,10,0,i))break;
+						if(isTaged(10,0,10,5,i))break;
+						if(isTaged(0,10,5,10,i))break;
+						if(isTaged(10,0,5,10,i))break;
+						if(isTaged(0,10,10,5,i))break;
+						if(isTaged(10,5,10,0,i))break;
+						
+				}
 			}
 		}
+	}
+	
+	public boolean isTaged(int x1, int x2, int y1, int y2, int index)
+	{
+		if (players.get(index).getX()-x1 == players.get(itPlayerIndex).getX()-x2 && players.get(index).getY()-y1 == players.get(itPlayerIndex).getY()-y2)
+		{
+			tag(index, itPlayerIndex);
+			return true;
+		}		
+		return false;
 	}
 
 	public void tag(int i, int x) {
