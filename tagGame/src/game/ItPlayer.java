@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class ItPlayer extends Player {
 
-	private int X=0, Y=0, D=0, spd=10, index=0;
+	private int X=0, Y=0, D=0, boost=0;
 	private String name="";
 	
 	//Constructors.
@@ -34,6 +34,7 @@ public class ItPlayer extends Player {
 		setX(Xaxis);
 		setY(Yaxis);
 		name=n;
+		boost=1000;
 	}
 	
 	// these methods return variables.
@@ -79,6 +80,11 @@ public class ItPlayer extends Player {
 		D=d;
 	}
 	
+	public void setBoost(int b)
+	{
+		boost=b;
+	}
+	
 	public void draw(Graphics window)
 	{
 		window.setColor(this.getColor());
@@ -86,11 +92,30 @@ public class ItPlayer extends Player {
 	}
 	
 	//moves player
-	public void moveX(int n){
-		X+=n;
+	public void moveUp(int n){
+		Y-=n;
 	}
-	public void moveY(int n){
+	public void moveDown(int n){
 		Y+=n;
+	}
+	public void moveRight(int n){
+		X+=n;
+	}	
+	public void moveLeft(int n){
+		X-=n;
+	}
+	
+	//boosts player
+	public void Boost()
+	{
+		if(boost>=5)
+			boost-=5;
+			//setSpeed(10);
+	}
+	public void addBoost()
+	{
+		if(boost<100) boost++;
+		System.out.println(boost);
 	}
 	
 	//toString

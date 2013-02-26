@@ -1,5 +1,9 @@
 package game;
 
+import game.Main.Event;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -8,6 +12,7 @@ public class ThisPlayer implements Runnable {
 
 	ArrayList<Player> players = Main.players;
 	public static int playerIndex, itPlayerIndex, delay = 200;
+	private boolean broke;
 
 	public ThisPlayer(int index, int itIndex) {
 		playerIndex = index;
@@ -20,47 +25,41 @@ public class ThisPlayer implements Runnable {
 		if (delay <= 0)
 		{
 			players.get(itPlayerIndex).setSpeed(5);
+			broke=false;
 			for (int i = 0; i < players.size(); i++) {
 				if (i != itPlayerIndex)
 				{
-						//corners
-						if(isTaged(0,10,0,10,i))break;
-						if(isTaged(10,0,0,10,i))break;
-						if(isTaged(0,10,10,0,i))break;
-						if(isTaged(10,0,10,0,i))break;
+					
+					for(int x1=0; x1<=10;x1++)
+					{
+						for(int y2=0; y2<=10;y2++)
+						{
+							if(isTaged(x1,y2,x1,y2,i))break;
+							if(isTaged(y2,x1,x1,y2,i))break;
+							if(isTaged(x1,y2,y2,x1,i))break;
+							if(isTaged(y2,x1,y2,x1,i))break;
+							
+							//sides
+							if(isTaged(x1,y2,x1,x1,i))break;
+							if(isTaged(y2,x1,x1,x1,i))break;
+							if(isTaged(x1,x1,y2,x1,i))break;
+							if(isTaged(x1,x1,x1,y2,i))break;
+						}
+						if(broke)break;
 						
-						//sides
-						if(isTaged(0,10,0,0,i))break;
-						if(isTaged(10,0,0,0,i))break;
-						if(isTaged(0,0,10,0,i))break;
-						if(isTaged(0,0,0,10,i))break;
+					}
+					if(broke)break;
+					
+					if(isTaged(5,10,0,10,i))break;
+					if(isTaged(10,5,0,10,i))break;
+					if(isTaged(5,10,10,0,i))break;
+					if(isTaged(10,0,10,5,i))break;
+					if(isTaged(0,10,5,10,i))break;
+					if(isTaged(10,0,5,10,i))break;
+					if(isTaged(0,10,10,5,i))break;
+					if(isTaged(10,5,10,0,i))break;
 						
-						//inside corners
-						if(isTaged(0,5,0,5,i))break;
-						if(isTaged(5,0,0,5,i))break;
-						if(isTaged(0,5,5,0,i))break;
-						if(isTaged(5,0,5,0,i))break;
-						
-						//inside
-						if(isTaged(0,0,0,0,i))break;
-						
-						//inside sides
-						if(isTaged(0,5,0,0,i))break;
-						if(isTaged(5,0,0,0,i))break;
-						if(isTaged(0,0,5,0,i))break;
-						if(isTaged(0,0,0,5,i))break;
-						
-						//middle sides
-						if(isTaged(5,10,0,10,i))break;
-						if(isTaged(10,5,0,10,i))break;
-						if(isTaged(5,10,10,0,i))break;
-						if(isTaged(10,0,10,5,i))break;
-						if(isTaged(0,10,5,10,i))break;
-						if(isTaged(10,0,5,10,i))break;
-						if(isTaged(0,10,10,5,i))break;
-						if(isTaged(10,5,10,0,i))break;
-						
-				}
+				}else ((ItPlayer)players.get(i)).addBoost();
 			}
 		}
 	}
@@ -70,6 +69,7 @@ public class ThisPlayer implements Runnable {
 		if (players.get(index).getX()-x1 == players.get(itPlayerIndex).getX()-x2 && players.get(index).getY()-y1 == players.get(itPlayerIndex).getY()-y2)
 		{
 			tag(index, itPlayerIndex);
+			broke=true;
 			return true;
 		}		
 		return false;
@@ -79,7 +79,8 @@ public class ThisPlayer implements Runnable {
 		players.set(i, players.get(i).toItPlayer(players.get(i)));
 		players.set(x, players.get(x).toPlayer(players.get(x)));
 		itPlayerIndex = i;
-		players.get(itPlayerIndex).setSpeed(0);
+		//players.get(i).setSpeed(0);
+		((ItPlayer) players.get(i)).setBoost(100);
 		delay = 200;
 		//players = Main.players;
 	}
@@ -87,7 +88,7 @@ public class ThisPlayer implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				System.out.println(delay);
+				//System.out.println(delay);
 				Thread.currentThread();
 				Thread.sleep(10);
 				taged();
@@ -97,3 +98,5 @@ public class ThisPlayer implements Runnable {
 	}
 
 }
+
+

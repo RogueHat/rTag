@@ -113,11 +113,17 @@ public class Player {
 		}
 		
 		//moves player
-		public void moveX(int n){
-			X+=n;
+		public void moveUp(int n){
+			Y-=n;
 		}
-		public void moveY(int n){
+		public void moveDown(int n){
 			Y+=n;
+		}
+		public void moveRight(int n){
+			X+=n;
+		}	
+		public void moveLeft(int n){
+			X-=n;
 		}
 		
 		//toString

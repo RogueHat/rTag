@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 public class Main extends JFrame
 {
 	public static ArrayList<Player> players=new ArrayList<Player>();
-	
+	private int event=0;
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 
@@ -47,15 +47,18 @@ public class Main extends JFrame
 		@Override
 		public void keyTyped(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			Player player= players.get(ThisPlayer.playerIndex);;
+			Player player= players.get(ThisPlayer.playerIndex);
 			
 			switch(arg0.getKeyCode()){
-			case KeyEvent.VK_UP: 	player.moveY(-player.getSpeed());	break;
-			case KeyEvent.VK_DOWN: 	player.moveY(player.getSpeed());	break;
-			case KeyEvent.VK_LEFT: 	player.moveX(-player.getSpeed());	break;
-			case KeyEvent.VK_RIGHT:	player.moveX(player.getSpeed()); 	break;
+			case KeyEvent.VK_W:		player.moveUp(player.getSpeed()); break;
+			case KeyEvent.VK_S: 	player.moveDown(player.getSpeed()); break;
+			case KeyEvent.VK_A: 	player.moveLeft(player.getSpeed()); break;
+			case KeyEvent.VK_D:		player.moveRight(player.getSpeed()); break;
 			}
+			
 		}
+		
+		
 	}
 	
 	public static ArrayList<Player> getPlayers()
