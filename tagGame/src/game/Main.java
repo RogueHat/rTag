@@ -1,6 +1,7 @@
 package game;
 
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -8,24 +9,34 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JFrame;
 
+import client.MovingPlayers;
+import client.GraphicsRunner.KeySniff;
+import elements.Player;
+
 public class Main extends JFrame
 {
 	public static ArrayList<Player> players=new ArrayList<Player>();
 	private int event=0;
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
+	private boolean hasMoved = false;
+	private Player myPl;
 
 	public Main()
 	{
 		super("Tag");
-
 		setSize(WIDTH,HEIGHT);
-
-		getContentPane().add(new DrawPlayer());
+		Color randColor = new Color((float)Math.random(),(float)Math.random(),(float)Math.random());
+		myPl = new Player((int)(Math.random()*WIDTH)+1,(int)(Math.random()*HEIGHT)+1,randColor);
+		net.send(myPl.toString());
+		//myPl = new Player();
+		getContentPane().add(new MovingPlayers(net));
 		this.addKeyListener(new Event());
+		
 		setVisible(true);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		new Thread(this).start();
 		
 	}
 	

@@ -93,6 +93,7 @@ public class ItPlayer extends Player {
 	
 	//moves player
 	public void moveUp(int n){
+		
 		Y-=n;
 	}
 	public void moveDown(int n){
