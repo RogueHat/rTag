@@ -11,7 +11,7 @@ public class Player {
 		x = y = 200;
 		side = 10;
 		col = Color.black;
-		spd = 50;
+		spd = 5;
 	}
 
 	public Player(String line[]){

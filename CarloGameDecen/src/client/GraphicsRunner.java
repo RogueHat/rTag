@@ -21,6 +21,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 	
 	private Network net = new Network();
 	private boolean hasMoved = false;
+	private int xSpd = 0, ySpd = 0;
 	
 	private Player myPl;
 
@@ -42,23 +43,33 @@ public class GraphicsRunner extends JFrame implements Runnable
 	}
 
 	public class KeySniff implements KeyListener{
+		int spd = 0;
 		@Override
 		public void keyPressed(KeyEvent e) {
-			int spd = myPl.getSpd();
-			switch(e.getKeyCode()){
-			case KeyEvent.VK_UP:	myPl.move(0, -spd);	break;
-			case KeyEvent.VK_DOWN:	myPl.move(0, spd);	break;
-			case KeyEvent.VK_LEFT:	myPl.move(-spd, 0);	break;
-			case KeyEvent.VK_RIGHT:	myPl.move(spd, 0);	break;
-			}
-			hasMoved = true;
-			//System.out.println(e.getKeyCode());
+			keyTyped(e);
 		}
 		@Override
-		public void keyReleased(KeyEvent e) {}
+		public void keyReleased(KeyEvent e) {
+			switch(e.getKeyCode()){
+			case KeyEvent.VK_UP:	ySpd = 0;	break;
+			case KeyEvent.VK_DOWN:	ySpd = 0;	break;
+			case KeyEvent.VK_LEFT:	xSpd = 0;	break;
+			case KeyEvent.VK_RIGHT:	xSpd = 0;	break;
+			}
+			if(xSpd==0 && ySpd == 0)hasMoved = false;
+		}
 		@Override
-		public void keyTyped(KeyEvent e) {}
-		
+		public void keyTyped(KeyEvent e) {
+			spd = myPl.getSpd();
+			int keyCode = e.getKeyCode();
+			switch(keyCode){
+			case KeyEvent.VK_UP:	ySpd = -spd;	break;
+			case KeyEvent.VK_DOWN:	ySpd = spd;		break;
+			case KeyEvent.VK_LEFT:	xSpd = -spd;	break;
+			case KeyEvent.VK_RIGHT:	xSpd = spd;		break;
+			}
+			hasMoved = true;
+		}
 	}
 	
 	
@@ -73,10 +84,10 @@ public class GraphicsRunner extends JFrame implements Runnable
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
-				Thread.currentThread().sleep(1);
-				for(int x = 0; x<2 && hasMoved; x++)
+				Thread.currentThread().sleep(7);
+				myPl.move(xSpd, ySpd);
+				for(int x = 0; x<1 && hasMoved; x++)
 					net.send(myPl.toString());
-				hasMoved = false;
 			}
 		} catch (Exception e) {
 		}
