@@ -8,6 +8,7 @@ public class Player {
 	private static int indexes=-1;
 	protected int index=0;
 	private int X=0, Y=0, D=0, timeIt=0, spd=5;
+	private Color col=Color.BLUE;
 	private String name="";
 	
 		//Constructors.
@@ -20,6 +21,18 @@ public class Player {
 		{
 			setX(Xaxis);
 			setY(Yaxis);
+		}
+		
+		public Player(String line[]){
+			this();
+			set(line);
+		}
+		
+		public Player(int xPos, int yPos, Color color){
+			this();
+			X = xPos;
+			Y = yPos;
+			col = color;
 		}
 		
 		public Player(int Xaxis, int Yaxis, String n)
@@ -40,6 +53,20 @@ public class Player {
 			name=n;
 		}
 		
+		public void set(int xPos, int yPos, int color) {
+			X = xPos;
+			Y = yPos;
+			col = new Color(color);
+		}
+		
+		public void set(String xPos, String yPos, String color)
+		{
+			set(Integer.parseInt(xPos),Integer.parseInt(yPos),Integer.parseInt(color));
+		}
+		
+		public void set(String line[]){
+			set(line[1],line[2],line[3]);
+		}
 
 		//changes player between it and not it.
 		public Player toPlayer(Player p)
@@ -57,7 +84,7 @@ public class Player {
 		// these methods return variables.
 		public Color getColor()
 		{
-			return Color.BLUE;
+			return col;
 		}
 		
 		public int getX()
@@ -129,7 +156,7 @@ public class Player {
 		//toString
 		public String toString()
 		{
-			return "Xaxis = "+X+" Yaxis = "+Y+" Name ="+name;
+			return "" + X + " " + Y + " "+col;
 		}
 }
 

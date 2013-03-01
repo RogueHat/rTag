@@ -93,30 +93,36 @@ public class ItPlayer extends Player {
 	
 	//moves player
 	public void moveUp(int n){
-		
-		Y-=n;
+		for(int i=0; i<n; i+=5)
+		Y-=5;
 	}
 	public void moveDown(int n){
-		Y+=n;
+		for(int i=0; i<n; i+=5)
+		Y+=5;
 	}
 	public void moveRight(int n){
-		X+=n;
+		for(int i=0; i<n; i+=5)
+		X+=5;
 	}	
 	public void moveLeft(int n){
-		X-=n;
+		for(int i=0; i<n; i+=5)
+		X-=5;
 	}
 	
 	//boosts player
 	public void Boost()
 	{
 		if(boost>=5)
+		{
 			boost-=5;
-			//setSpeed(10);
+			setSpeed(10);
+		}
 	}
 	public void addBoost()
 	{
 		if(boost<100) boost++;
-		System.out.println(boost);
+		
+		//System.out.println(boost);
 	}
 	
 	//toString

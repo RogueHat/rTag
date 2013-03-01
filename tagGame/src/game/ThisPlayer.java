@@ -24,7 +24,8 @@ public class ThisPlayer implements Runnable {
 		delay--;
 		if (delay <= 0)
 		{
-			players.get(itPlayerIndex).setSpeed(5);
+			if(playerIndex==itPlayerIndex && Main.space!=0 && Main.m!=0 ) ((ItPlayer)players.get(itPlayerIndex)).Boost();
+			else players.get(itPlayerIndex).setSpeed(5);
 			broke=false;
 			for (int i = 0; i < players.size(); i++) {
 				if (i != itPlayerIndex)
@@ -59,7 +60,7 @@ public class ThisPlayer implements Runnable {
 					if(isTaged(0,10,10,5,i))break;
 					if(isTaged(10,5,10,0,i))break;
 						
-				}else ((ItPlayer)players.get(i)).addBoost();
+				}else if(Main.space!=0) ((ItPlayer)players.get(i)).addBoost();
 			}
 		}
 	}
@@ -82,7 +83,6 @@ public class ThisPlayer implements Runnable {
 		//players.get(i).setSpeed(0);
 		((ItPlayer) players.get(i)).setBoost(100);
 		delay = 200;
-		//players = Main.players;
 	}
 
 	public void run() {
