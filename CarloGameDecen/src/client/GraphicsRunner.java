@@ -23,7 +23,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 	private boolean hasMoved = false;
 	private int xSpd = 0, ySpd = 0;
 	
-	private Player myPl;
+	public static Player myPl;
 
 	public GraphicsRunner()
 	{
@@ -43,7 +43,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 	}
 
 	public class KeySniff implements KeyListener{
-		int spd = 0;
+		int spd = 0, boost = 1;
 		@Override
 		public void keyPressed(KeyEvent e) {
 			keyTyped(e);
@@ -55,21 +55,26 @@ public class GraphicsRunner extends JFrame implements Runnable
 			case KeyEvent.VK_DOWN:	ySpd = 0;	break;
 			case KeyEvent.VK_LEFT:	xSpd = 0;	break;
 			case KeyEvent.VK_RIGHT:	xSpd = 0;	break;
+			case KeyEvent.VK_SPACE:	boost = 1;	break;
 			}
-			if(xSpd==0 && ySpd == 0)hasMoved = false;
+			if(xSpd == 0 && ySpd == 0)hasMoved = false;
 		}
 		@Override
 		public void keyTyped(KeyEvent e) {
-			spd = myPl.getSpd();
+			spd = myPl.getSpd()*boost;
 			int keyCode = e.getKeyCode();
 			switch(keyCode){
-			case KeyEvent.VK_UP:	ySpd = -spd;	break;
-			case KeyEvent.VK_DOWN:	ySpd = spd;		break;
-			case KeyEvent.VK_LEFT:	xSpd = -spd;	break;
-			case KeyEvent.VK_RIGHT:	xSpd = spd;		break;
+			case KeyEvent.VK_UP:	ySpd = -spd;	hasMoved = true;	break;
+			case KeyEvent.VK_DOWN:	ySpd = spd;		hasMoved = true;	break;
+			case KeyEvent.VK_LEFT:	xSpd = -spd;	hasMoved = true;	break;
+			case KeyEvent.VK_RIGHT:	xSpd = spd;		hasMoved = true;	break;
+			case KeyEvent.VK_SPACE: boost = 2;							break;
 			}
-			hasMoved = true;
 		}
+	}
+	public void update(int n){
+		for(int x = 0; x<n; x++)
+			net.send(myPl.toString());
 	}
 	
 	
@@ -84,10 +89,9 @@ public class GraphicsRunner extends JFrame implements Runnable
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
-				Thread.currentThread().sleep(7);
+				Thread.currentThread().sleep(8);
 				myPl.move(xSpd, ySpd);
-				for(int x = 0; x<1 && hasMoved; x++)
-					net.send(myPl.toString());
+				if(hasMoved)update(1);
 			}
 		} catch (Exception e) {
 		}

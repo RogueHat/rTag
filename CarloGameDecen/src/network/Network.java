@@ -11,32 +11,6 @@ public class Network {
 	private MulticastSocket s;
 	private int port;
 
-	public Network() {
-		port = 6789;
-		try {
-			group = InetAddress.getByName("228.5.6.7");
-			s = new MulticastSocket(port);
-			s.joinGroup(group);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public Network(int prt) {
-		port = prt;
-		try {
-			group = InetAddress.getByName("228.5.6.7");
-			s = new MulticastSocket(port);
-			s.joinGroup(group);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
 	public Network(String IP, int prt) {
 		port = prt;
 		try {
@@ -47,6 +21,15 @@ public class Network {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public Network() {
+		this("228.5.6.7", 6789);
+	}
+
+	public Network(int prt) {
+		this();
+		port = prt;
 	}
 
 	public void send(String msg) {
@@ -68,14 +51,8 @@ public class Network {
 			e.printStackTrace();
 		}
 		String out = new String(recv.getData());
-		if(withIP)  
-			out = recv.getAddress().toString()+" "+out;
+		if (withIP)
+			out = recv.getAddress().toString() + " " + out;
 		return out.trim();
-	}
-	public static void main(String[]args){
-		Network meh = new Network();
-		while(true){
-			System.out.println(meh.recieve(true));
-		}
 	}
 }

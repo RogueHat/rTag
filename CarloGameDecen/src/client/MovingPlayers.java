@@ -15,6 +15,7 @@ import network.Network;
 public class MovingPlayers extends JPanel implements Runnable {
 	private Network net;
 	private Map<String, Player> players;
+	private boolean hardMode = false;
 
 	public MovingPlayers() {		
 		net = new Network();
@@ -34,7 +35,10 @@ public class MovingPlayers extends JPanel implements Runnable {
 	}
 
 	public void paint(Graphics window) {
-		window.setColor(Color.WHITE);
+		if(hardMode)
+			window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
+		else
+			window.setColor(Color.WHITE);
 		window.fillRect(0, 0, getWidth(), getHeight());
 		for(Player pl:players.values())
 			pl.draw(window);
