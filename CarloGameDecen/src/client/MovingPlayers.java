@@ -16,11 +16,11 @@ public class MovingPlayers extends JPanel implements Runnable {
 	private Network net;
 	private Map<String, Player> players;
 	private boolean hardMode = false;
+	Player meh;
 
 	public MovingPlayers() {		
 		net = new Network();
 		players = new HashMap<String, Player>();
-
 		setBackground(Color.WHITE);		
 		setVisible(true);
 		new Thread(this).start();
@@ -64,6 +64,9 @@ public class MovingPlayers extends JPanel implements Runnable {
 			while (true) {
 				Thread.currentThread().sleep(0);
 				check(1);
+				for(String IP:players.keySet())
+					if(!IP.equals(GraphicsRunner.myIp) && GraphicsRunner.myPl.collidedWith(players.get(IP)))
+						System.out.println("collided");
 				repaint();
 			}
 		} catch (Exception e) {

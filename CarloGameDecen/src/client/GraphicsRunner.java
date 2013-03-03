@@ -18,12 +18,13 @@ public class GraphicsRunner extends JFrame implements Runnable
 {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 800;
+	public static Player myPl;
+	public static String myIp;
 	
 	private Network net = new Network();
 	private boolean hasMoved = false;
 	private int xSpd = 0, ySpd = 0;
 	
-	public static Player myPl;
 
 	public GraphicsRunner()
 	{
@@ -32,6 +33,12 @@ public class GraphicsRunner extends JFrame implements Runnable
 		Color randColor = new Color((float)Math.random(),(float)Math.random(),(float)Math.random());
 		myPl = new Player((int)(Math.random()*WIDTH)+1,(int)(Math.random()*HEIGHT)+1,randColor);
 		net.send(myPl.toString());
+		String loopBack[] = net.recieve(true).split(" ");
+		String myString = "";
+		for(int x=1;x<loopBack.length;x++)
+			myString+=loopBack[x]+" ";
+		if(myPl.toString().equals(myString.trim()))
+			myIp=loopBack[0];
 		//myPl = new Player();
 		getContentPane().add(new MovingPlayers(net));
 		this.addKeyListener(new KeySniff());
