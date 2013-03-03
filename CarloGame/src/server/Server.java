@@ -20,25 +20,27 @@ public class Server implements Runnable{
 	}
 	
 	public void check(int i) {
-		boolean newVals = false;
+		//boolean newVals = false;
 		String line[];
 		for (int x = 0; x < i; x++) {
 			line = net.recieve(true).split(" ");
 			if (!line[1].contains("/")) {
-				playerStrings.put(line[0], line[1]+" "+line[2]+" "+line[3]);
-				newVals = true;
+				String in = "";
+				for(int y=1; y<line.length;y++)
+					in += line[y]+" ";
+				playerStrings.put(line[0],in.trim());
+				net.send(line[0]+" "+playerStrings.get(line[0]));
 			}
 		}
-		if(newVals)update();
 	}
 	
-	public void update(){
-		for(String IP: playerStrings.keySet()){
-			String out = IP+" "+playerStrings.get(IP);
-			//System.out.println(out);
-			net.send(out);
-		}
-	}
+//	public void update(){
+//		for(String IP: playerStrings.keySet()){
+//			String out = IP+" "+playerStrings.get(IP);
+//			//System.out.println(out);
+//			net.send(out);
+//		}
+//	}
 	
 	
 	/**
@@ -54,8 +56,8 @@ public class Server implements Runnable{
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
-				Thread.currentThread().sleep(10);
-				check(10);
+				Thread.currentThread().sleep(0);
+				check(1);
 				//update();
 			}
 		} catch (Exception e) {

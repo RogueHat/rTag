@@ -4,14 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Player {
-	private int x, y, side, spd;
+	private int x, y, side, spd, xSpd, ySpd, nextX, nextY;
 	private Color col;
+	private boolean itStatus =false;
 
 	public Player() {
 		x = y = 200;
 		side = 10;
 		col = Color.black;
-		spd = 50;
+		spd = 5;
 	}
 
 	public Player(String line[]){
@@ -26,7 +27,9 @@ public class Player {
 		col = color;
 	}
 	
-	public void move(int xSpd, int ySpd){
+	public void move(int xS, int yS){
+		xSpd = xS;
+		ySpd = yS;
 		x=x+xSpd;
 		y=y+ySpd;
 	}
@@ -41,6 +44,7 @@ public class Player {
 	}
 	public void set(String line[]){
 		set(line[1],line[2],line[3]);
+		itStatus = new Boolean(line[4]);
 	}
 	
 	public void draw(Graphics window) {
@@ -51,17 +55,35 @@ public class Player {
 	public int getSpd() {
 		return spd;
 	}
-
-	public String toString() {
-		return "" + x + " " + y + " " + col.getRGB();
+	public boolean isIt(){
+		return itStatus;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
+	public int getS(){
+		return side;
+	}
+	public boolean collidedWith(Player a){
+		nextX = x + xSpd;
+		nextY = y + ySpd;
+		return xCheck(a) && yCheck(a);
+	}
+	private boolean xCheck(Player a){
+		return ((a.getX() >= nextX && a.getX() <= nextX+side) || 
+				(a.getX()+a.getS()<= nextX+side && a.getX()+a.getS()>nextX));
+	}
+	private boolean yCheck(Player a){
+		return ((a.getY() >= nextY && a.getY() <= nextY+side) || 
+				(a.getY()+a.getS()<= nextY+side && a.getY()+a.getS()>nextY));
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public String toString() {
+		return "" + x + " " + y + " " + col.getRGB() + " " + isIt();
 	}
 
 }
