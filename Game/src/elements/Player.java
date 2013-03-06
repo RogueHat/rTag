@@ -58,6 +58,9 @@ public class Player {
 	public boolean isIt(){
 		return itStatus;
 	}
+	public void changeItStatus(){
+		itStatus = !itStatus;
+	}
 	
 	public int getX(){
 		return x;

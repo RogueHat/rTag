@@ -59,14 +59,12 @@ public class MovingPlayers extends JPanel implements Runnable {
 	@SuppressWarnings("static-access")
 	@Override
 	public void run() {
+		CollideChecker colCheckRun = new CollideChecker(players);
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
 				Thread.currentThread().sleep(0);
 				check(1);
-				for(String IP:players.keySet())
-					if(!IP.equals(GraphicsRunner.myIp) && GraphicsRunner.myPl.collidedWith(players.get(IP)))
-						System.out.println("collided");
 				repaint();
 			}
 		} catch (Exception e) {
