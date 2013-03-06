@@ -15,7 +15,7 @@ import network.Network;
 public class MovingPlayers extends JPanel implements Runnable {
 	private Network net;
 	private Map<String, Player> players;
-	private boolean hardMode = false;
+	private boolean hardMode = true;
 	Player meh;
 
 	public MovingPlayers() {		
