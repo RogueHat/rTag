@@ -16,8 +16,6 @@ public class CollideChecker implements Runnable {
 	}
 
 	public void checkCollide() {
-		if (!myPl.isIt() && players.size() <= 1)
-			myPl.changeItStatus();
 		for (String IP : players.keySet()) {
 			Player otherPl = players.get(IP);
 			if (!IP.equals(GraphicsRunner.myIp)

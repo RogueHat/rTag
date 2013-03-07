@@ -89,6 +89,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 	public static void main( String args[] )
 	{
 		GraphicsRunner run = new GraphicsRunner();
+		CollideChecker colCheckRun = new CollideChecker();
 	}
 
 

@@ -61,7 +61,6 @@ public class MovingPlayers extends JPanel implements Runnable {
 	@SuppressWarnings("static-access")
 	@Override
 	public void run() {
-		CollideChecker colCheckRun = new CollideChecker();
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
