@@ -14,7 +14,7 @@ import network.Network;
 @SuppressWarnings("serial")
 public class MovingPlayers extends JPanel implements Runnable {
 	private Network net;
-	private Map<String, Player> players;
+	public static Map<String, Player> players;
 	private boolean hardMode = false;
 	Player meh;
 
@@ -34,7 +34,7 @@ public class MovingPlayers extends JPanel implements Runnable {
 		paint(window);
 	}
 
-	public void paint(Graphics window) {
+	public  void paint(Graphics window) {
 		if(hardMode)
 			window.setColor(new Color((float)Math.random(),(float)Math.random(),(float)Math.random()));
 		else
@@ -51,15 +51,17 @@ public class MovingPlayers extends JPanel implements Runnable {
 			line = net.recieve(true).split(" ");
 			if (players.containsKey(line[0]))
 				players.get(line[0]).set(line);
-			else if (line[0].contains("/"))
+			else if (line[0].contains("/")){
 				players.put(line[0], new Player(line));
+				net.send(GraphicsRunner.myPl.toString());
+			}
 		}
 	}
 
 	@SuppressWarnings("static-access")
 	@Override
 	public void run() {
-		CollideChecker colCheckRun = new CollideChecker(players);
+		CollideChecker colCheckRun = new CollideChecker();
 		// TODO Auto-generated method stub
 		try {
 			while (true) {

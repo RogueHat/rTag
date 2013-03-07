@@ -39,6 +39,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 			myString+=loopBack[x]+" ";
 		if(myPl.toString().equals(myString.trim()))
 			myIp=loopBack[0];
+		net.send(myPl.toString());
 		//myPl = new Player();
 		getContentPane().add(new MovingPlayers(net));
 		this.addKeyListener(new KeySniff());

@@ -4,27 +4,30 @@ import java.util.Map;
 
 import elements.Player;
 
-public class CollideChecker implements Runnable{
+public class CollideChecker implements Runnable {
 	private Map<String, Player> players;
 	private Player myPl;
 	int delay = 0;
-	
-	public CollideChecker(Map<String, Player> pls){
-		players = pls;
+
+	public CollideChecker() {
+		players = MovingPlayers.players;
 		myPl = GraphicsRunner.myPl;
 		new Thread(this).start();
 	}
-	public void checkCollide(){
-		for(String IP:players.keySet()){
+
+	public void checkCollide() {
+		if (!myPl.isIt() && players.size() <= 1)
+			myPl.changeItStatus();
+		for (String IP : players.keySet()) {
 			Player otherPl = players.get(IP);
-			if(!IP.equals(GraphicsRunner.myIp) && myPl.collidedWith(otherPl) && myPl.isIt() != otherPl.isIt()){
+			if (!IP.equals(GraphicsRunner.myIp)
+					&& (myPl.collidedWith(otherPl) || otherPl.collidedWith(myPl))
+					&& myPl.isIt() != otherPl.isIt()) {
 				delay = 5000;
 				myPl.changeItStatus();
-				players.get(IP).changeItStatus();
 			}
 		}
 	}
-	
 
 	@Override
 	public void run() {
