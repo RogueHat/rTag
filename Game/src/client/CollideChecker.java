@@ -25,6 +25,7 @@ public class CollideChecker implements Runnable {
 				delay = 10000;
 				myPl.changeItStatus();
 				GraphicsRunner.net.send(myPl.toString());
+				//System.out.println("collided");
 			}
 		}
 	}
