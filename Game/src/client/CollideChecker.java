@@ -13,6 +13,7 @@ public class CollideChecker implements Runnable {
 		players = MovingPlayers.players;
 		myPl = GraphicsRunner.myPl;
 		new Thread(this).start();
+		if(!myPl.isIt() && players.size()<=1)myPl.changeItStatus();
 	}
 
 	public void checkCollide() {
