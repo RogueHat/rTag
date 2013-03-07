@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Player {
 	private int x, y, side, spd, xSpd, ySpd, nextX, nextY;
 	private Color col;
-	private boolean itStatus =false;
+	private boolean itStatus = false;
 
 	public Player() {
 		x = y = 200;
@@ -73,7 +73,7 @@ public class Player {
 	}
 	
 	public Color getCol(){
-		if (isIt()) return Color.black;
+		if (isIt()) return Color.RED;
 		return col;
 	}
 	
