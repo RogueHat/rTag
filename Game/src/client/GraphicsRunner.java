@@ -22,7 +22,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 	public static Player myPl;
 	public static String myIp;
 	
-	private Network net = new Network();
+	public static Network net = new Network();
 	private boolean hasMoved = false;
 	private int xSpd = 0, ySpd = 0;
 	
