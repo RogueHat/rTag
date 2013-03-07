@@ -32,6 +32,7 @@ public class CollideChecker implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
+			Thread.currentThread().sleep(0);
 			while (true) {
 				checkCollide();
 				Thread.currentThread().sleep(delay);
