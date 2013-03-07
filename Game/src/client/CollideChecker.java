@@ -22,7 +22,7 @@ public class CollideChecker implements Runnable {
 			if (!IP.equals(GraphicsRunner.myIp)
 					&& (myPl.collidedWith(otherPl) || otherPl.collidedWith(myPl))
 					&& myPl.isIt() != otherPl.isIt()) {
-				delay = 5000;
+				delay = 10000;
 				myPl.changeItStatus();
 			}
 		}
