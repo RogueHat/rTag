@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+@SuppressWarnings("serial")
 public class GraphicsRunner extends JFrame implements Runnable
 {
 	private static final int WIDTH = 800;
@@ -32,15 +33,8 @@ public class GraphicsRunner extends JFrame implements Runnable
 		setSize(WIDTH,HEIGHT);
 		Color randColor = new Color((float)Math.random(),(float)Math.random(),(float)Math.random());
 		myPl = new Player((int)(Math.random()*WIDTH)+1,(int)(Math.random()*HEIGHT)+1,randColor);
+		getIP();
 		net.send(myPl.toString());
-		String loopBack[] = net.recieve(true).split(" ");
-		String myString = "";
-		for(int x=1;x<loopBack.length;x++)
-			myString+=loopBack[x]+" ";
-		if(myPl.toString().equals(myString.trim()))
-			myIp=loopBack[0];
-		net.send(myPl.toString());
-		//myPl = new Player();
 		getContentPane().add(new MovingPlayers(net));
 		this.addKeyListener(new KeySniff());
 		
@@ -48,6 +42,16 @@ public class GraphicsRunner extends JFrame implements Runnable
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		new Thread(this).start();
+	}
+	
+	public void getIP(){
+		net.send(myPl.toString());
+		String loopBack[] = net.recieve(true).split(" ");
+		String myString = "";
+		for(int x=1;x<loopBack.length;x++)
+			myString+=loopBack[x]+" ";
+		if(myPl.toString().equals(myString.trim()))
+			myIp=loopBack[0];
 	}
 
 	public class KeySniff implements KeyListener{
