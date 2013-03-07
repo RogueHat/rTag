@@ -71,6 +71,13 @@ public class Player {
 	public int getS(){
 		return side;
 	}
+	
+	public Color getCol(){
+		if (isIt()) return Color.black;
+		return col;
+	}
+	
+	
 	public boolean collidedWith(Player a){
 		nextX = x + xSpd;
 		nextY = y + ySpd;
@@ -86,7 +93,7 @@ public class Player {
 	}
 
 	public String toString() {
-		return "" + x + " " + y + " " + col.getRGB() + " " + isIt();
+		return "" + x + " " + y + " " + getCol().getRGB() + " " + isIt();
 	}
 
 }
