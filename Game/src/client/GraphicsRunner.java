@@ -100,7 +100,7 @@ public class GraphicsRunner extends JFrame implements Runnable
 			while (true) {
 				Thread.currentThread().sleep(8);
 				myPl.move(xSpd, ySpd);
-				if(hasMoved)update(1);
+				/*if(hasMoved)*/update(1);
 			}
 		} catch (Exception e) {
 		}
